@@ -1,0 +1,305 @@
+<apex:page doctype="html-5.0" controller="BlogHomeController" applyhtmltag="false" showheader="false" standardstylesheets="false"
+			cache="false">
+  <head>
+  	  <title>Blog Home</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
+
+      <apex:stylesheet value="{!URLFOR($Resource.Bootstrap_3_1_1, 'bootstrap-3.1.1-dist/css/bootstrap.min.css')}"/>
+      <apex:stylesheet value="{!URLFOR($Resource.Bootstrap_3_1_1, 'bootstrap-3.1.1-dist/css/bootstrap-theme.min.css')}"/>
+      
+      <apex:includescript value="//ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js" />
+      
+      <apex:includeScript value="{!URLFOR($Resource.Bootstrap_3_1_1, 'bootstrap-3.1.1-dist/js/bootstrap.min.js')}"/>
+      <apex:includeScript value="{!$Resource.Picturefill_1_2_1}"/>
+      <style>
+		.top-buffer { 
+			margin-top:20px; 
+		}
+		.fullwidth {
+			margin-left:0;
+			margin-right:0;
+			padding-left:0;
+			padding-right:0;
+		}
+		.hidden-toggle {
+			display:none;
+		}
+		.navbar-default {
+			background-color: #fe5000;
+			color: #fff;
+		}
+		.nav.nav-center {
+			margin:auto;
+    		float:none;
+			color: #fff;
+		}
+		.nav-logo-small {
+			margin: auto; 
+			display:block; 
+			height:2.5em; 
+			width:2.647em;
+			margin-top: 0.6em;
+		}
+		.nav-logo-large {
+			margin-left: 55%; 
+			display:block; 
+			height:2em; 
+			width:8.823em;
+			margin-top: 0.7em;
+		}
+		.sm-container {
+			margin-top: 0.8em;
+			float:left;
+		}
+		.sm-icon {
+			width:1.75em;
+			height:1.75em;
+			margin-left: 0.5em;
+		}
+		
+		@media ( min-width: 48em ) {
+			div.navbar-header {
+				width:70%;
+			}
+		}
+
+		@media ( min-width: 64em ) {
+			div.navbar-header {
+				width:85%;
+			}
+		}
+
+      </style>
+  </head>
+  
+  <body>
+	<nav id="navbar" class="navbar navbar-inverse" role="navigation">
+  	  <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <div class="visible-xs visible-sm sm-container">
+            <a href="https://twitter.com/intent/user?screen_name=bob_buzzard" target="_blank" class="menu-trigger"><img class="sm-icon" src="{!$Resource.Twitter}"/></a>
+            <a href="http://www.facebook.com/TheRealBobBuzzard" target="_blank" class="menu-trigger"><img class="sm-icon" src="{!$Resource.Facebook}"/></a>
+          </div>
+          <img class="nav-logo-large hidden-xs" src="{!$Resource.BGLogo}" />
+          <img class="nav-logo-small visible-xs" src="{!$Resource.BGIcon}" />
+        </div>
+
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav navbar-right">
+            <li>
+              <a href="#search" class="menu-trigger hidden-md hidden-lg">Search</a>
+            </li>
+            <li>
+              <a href="#aboutme" class="menu-trigger hidden-md hidden-lg">About</a>
+            </li>
+            <li>
+              <a href="{!URLFOR($Page.BlogLinks)}" class="menu-trigger">Links</a>
+            </li>
+          </ul>
+        </div><!-- /.navbar-collapse -->
+      </div><!-- /.container-fluid -->
+    </nav>
+
+  <div class="container-fluid">
+    <div class="row-fluid">
+      <div class="col-xs-12 col-md-9">
+        <apex:outputPanel id="blogpanel">
+        <apex:repeat value="{!blogWrappers}" var="wrap">  	
+          <div class="row-fluid">
+            <div class="col-xs-12 fullwidth">
+              <div class="panel panel-primary">
+	  		    <div class="panel-heading">
+      		 	  <h3 class="panel-title"><apex:outputField value="{!wrap.blog.Name}"/></h3>
+  		  	    </div>
+			    <div class="panel-body">
+			      <div class="text-center">
+                  <span data-picture="1" data-alt="Blog Image" class="text-center">
+                    <span data-src="/servlet/servlet.FileDownload?file={!wrap.blog.Small_Image_Id__c}"></span>
+                    <span data-src="/servlet/servlet.FileDownload?file={!wrap.blog.Medium_Image_Id__c}" data-media="(min-width: 48em)"></span>
+                    <span data-src="/servlet/servlet.FileDownload?file={!wrap.blog.Large_Image_Id__c}" data-media="(min-width: 64em)"></span>
+                  </span>
+                  </div>
+                  <div class="top-buffer table-responsive">
+                    <apex:outputField value="{!wrap.blog.Content__c}" />
+                  </div>
+                </div>
+                <div class="panel-footer">
+	              <div class="pull-right"><span class="glyphicon glyphicon-comment"></span>&nbsp;<em><apex:outputText value="{!wrap.commentCount}"/></em></div>
+                  <em><apex:outputText value="{!wrap.blog.Author__r.Name}" />,&nbsp;<apex:outputText value="{0,date,dd/MM/yyyy}">
+         					<apex:param value="{!wrap.blog.Date_Posted__c}" /></apex:outputText></em>          
+                </div>
+  		      </div> 
+  		    </div>
+  		  </div>
+  		             
+          <div class="row-fluid hidden-md hidden-lg">
+            <div class="col-xs-12">
+              <span id="comglyph-{!wrap.blog.id}-open"><span class="glyphicon glyphicon-plus-sign" ></span>&nbsp;Show Comments</span>
+              <span class="hidden-toggle" id="comglyph-{!wrap.blog.id}-close"><span class="glyphicon glyphicon-minus-sign" ></span>&nbsp;Hide Comments</span>
+            </div>
+          </div>
+          <div class="row-fluid hidden-xs hidden-sm" id="comments-{!wrap.blog.id}">
+            <div class="col-xs-12 fullwidth top-buffer">
+              <div class="panel panel-info">
+	  		     <div class="panel-heading">
+    	  		    <h3 class="panel-title">Comments</h3>
+  		  	     </div>
+  		      </div>
+  		    </div>  
+            <apex:repeat value="{!wrap.blog.Blog_Comments__r}" var="comment">
+              <div class="row-fluid">
+                <div class="col-xs-12">
+                  <apex:outputText value="{!comment.Body__c}" />
+                </div>
+              </div>
+              <div class="row-fluid">
+                <div class="col-xs-12 text-right">
+                  <em><apex:outputText value="{!comment.Name__c}" />,&nbsp;<apex:outputText value="{0,date,dd/MM/yyyy}">
+       					<apex:param value="{!comment.Posted__c}" /></apex:outputText></em>
+                </div>
+              </div>
+            </apex:repeat>
+              <div class="row-fluid">
+                <div class="col-xs-12">
+              <form class="form-horizontal" role="form">
+                    <div class="col-xs-12 top-buffer">
+                      <div class="form-group">
+  					    <div class="input-group">
+  					      <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
+  					      <input type="text" class="form-control" placeholder="name ..." id="newcomname-{!wrap.blog.id}"/>
+					    </div>   
+					  </div>
+                    </div>
+                    <div class="col-xs-12">
+                      <div class="form-group">
+					    <div class="input-group">
+  					      <span class="input-group-addon"><span class="glyphicon glyphicon-align-left"></span></span>
+                          <textarea rows="2" class="form-control newcomment" placeholder="your comment ..." id="newcombody-{!wrap.blog.id}" />
+					    </div>
+					  </div>   
+                    </div>
+                    <div class="col-xs-12">
+                      <button type="button" class="btn btn-primary pull-right" id="newcombtn-{!wrap.blog.id}">Add comment</button> 
+                    </div>
+              </form>
+              </div>
+            </div>
+        </div>
+        <div class="fluid-row">
+          <div class="col-xs-12 top-buffer">
+          </div>
+        </div>
+         </apex:repeat>
+        </apex:outputPanel>
+    	
+      </div>
+      <div class="col-md-3 col-xs-12">
+        <a id="search"></a>
+        <div class="panel panel-default">
+          <div class="panel-heading">Search</div>
+          <div class="panel-body">
+              <form class="form-horizontal" role="form">
+                <div class="col-xs-12 top-buffer">
+                  <div class="form-group">
+  					<div class="input-group">
+  					  <span class="input-group-addon"><span class="glyphicon glyphicon-search"></span></span>
+  					  <input type="text" class="form-control" placeholder="enter search terms ..." id="searchterm"/>
+					</div>   
+			      </div>
+			    </div>
+                <div class="col-xs-12 top-buffer">
+                  <button type="button" class="btn btn-primary pull-right" id="searchbtn">Go</button> 
+                </div>
+             </form>
+          </div>
+        </div>
+        <a id="aboutme"></a>
+        <div class="panel panel-default">
+          <div class="panel-heading">About Me</div>
+          <div class="panel-body">
+            I'm also known as Keir Bowden and I'm CTO of BrightGen, a Salesforce Platinum Cloud Alliance partner in the UK
+          </div>
+        </div>
+        <div class="hidden-xs hidden-sm text-center">
+		<a class="twitter-timeline" href="https://twitter.com/bob_buzzard" data-widget-id="458942083969986561">Tweets by @bob_buzzard</a>
+		<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+
+    	<div class="panel panel-default">
+          <div class="panel-body text-center">
+	        <a href="https://www.facebook.com/TheRealBobBuzzard" target="_TOP" style="font-family: &quot;lucida grande&quot;,tahoma,verdana,arial,sans-serif; font-size: 11px; font-variant: normal; font-style: normal; font-weight: normal; color: #3B5998; text-decoration: none;" title="Bob Buzzard">Bob Buzzard</a><br/><a href="https://www.facebook.com/TheRealBobBuzzard" target="_TOP" title="Bob Buzzard"><img src="https://badge.facebook.com/badge/100002930667218.1212.2000647968.png" style="border: 0px;" /></a><br/><a href="https://www.facebook.com/badges/" target="_TOP" style="font-family: &quot;lucida grande&quot;,tahoma,verdana,arial,sans-serif; font-size: 11px; font-variant: normal; font-style: normal; font-weight: normal; color: #3B5998; text-decoration: none;" title="Make your own badge!">Create your badge</a>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+
+    </div>
+        <apex:form >
+    	  <apex:actionFunction name="addComment" action="{!addComment}" rerender="blogpanel, jspanel" oncomplete="clearComment()">
+            <apex:param name="comblogid" assignTo="{!comblogid}" value=""/>
+    		<apex:param name="comname" assignTo="{!comname}" value=""/>
+    		<apex:param name="combody" assignTo="{!combody}" value=""/>
+    	  </apex:actionFunction>
+    	  <apex:actionFunction name="runSearch" action="{!doSearch}" rerender="blogpanel, jspanel" oncomplete="searchRun()">
+            <apex:param name="term" assignTo="{!searchStr}" value=""/>
+          </apex:actionFunction>
+        </apex:form>
+    </div>
+  <apex:outputPanel id="jspanel">
+  <script>
+    $('[id^="comglyph"]').on("click", function(ev) {
+    						var id=$(this).attr('id'); 
+    						var blogId=id.split('-')[1];
+    						var toggleId='comments-' + blogId;
+    						var div=$('#' + toggleId);
+    						
+    						if (div.hasClass('hidden-xs'))
+    						{
+    							div.removeClass('hidden-xs hidden-sm');
+    							div.addClass('visible-xs visible-sm');
+    						}
+    						else
+    						{
+    							div.removeClass('visible-xs visible-sm');
+    							div.addClass('hidden-xs hidden-sm');
+    						}
+    						var cgId='comglyph-' + blogId;
+    						$('[id^="' + cgId + '"]').toggle();
+    				}); 
+
+	$('[id^="newcombtn"]').on("click", function(ev) {
+    						var id=$(this).attr('id'); 
+    						var blogId=id.split('-')[1];
+							var name=$('#newcomname-' + blogId).val();
+							var body=$('#newcombody-' + blogId).val();
+							addComment(blogId, name, body);
+						});
+
+	function clearComment()
+	{
+		$('[id^="newcomname"]').val('');
+		$('[id^="newcombody"]').val('');
+	}
+
+	$('#searchbtn').on("click", function(ev) {
+							var term=$('#searchterm').val();
+							runSearch(term);
+						});
+
+	function searchRun()
+	{
+		window.picturefill();
+		$('[id^="searchterm"]').val('');
+		$('html,body').scrollTop(0);	
+	}
+
+  </script>
+  </apex:outputPanel>
+  </body>
+</apex:page>

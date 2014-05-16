@@ -1,0 +1,218 @@
+<apex:page doctype="html-5.0" applyhtmltag="false" showheader="false" standardstylesheets="false"
+			cache="false">
+  <head>
+      <title>Links</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
+
+      <apex:stylesheet value="{!URLFOR($Resource.Bootstrap_3_1_1, 'bootstrap-3.1.1-dist/css/bootstrap.min.css')}"/>
+      <apex:stylesheet value="{!URLFOR($Resource.Bootstrap_3_1_1, 'bootstrap-3.1.1-dist/css/bootstrap-theme.min.css')}"/>
+      
+      <apex:includescript value="//ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js" />
+      
+      <apex:includeScript value="{!URLFOR($Resource.Bootstrap_3_1_1, 'bootstrap-3.1.1-dist/js/bootstrap.min.js')}"/>
+      <style>
+		.top-buffer { 
+			margin-top:20px; 
+		}
+		.fullwidth {
+			margin-left:0;
+			margin-right:0;
+			padding-left:0;
+			padding-right:0;
+		}
+		.hidden-toggle {
+			display:none;
+		}
+		.navbar-default {
+			background-color: #fe5000;
+			color: #fff;
+		}
+		.nav.nav-center {
+			margin:auto;
+    		float:none;
+			color: #fff;
+		}
+		.nav-logo-small {
+			margin: auto; 
+			display:block; 
+			height:2.5em; 
+			width:2.647em;
+			margin-top: 0.6em;
+		}
+		.nav-logo-large {
+			margin-left: 55%; 
+			display:block; 
+			height:2em; 
+			width:8.823em;
+			margin-top: 0.7em;
+		}
+		.sm-container {
+			margin-top: 0.8em;
+			float:left;
+		}
+		.sm-icon {
+			width:1.75em;
+			height:1.75em;
+			margin-left: 0.5em;
+		}
+		
+		@media ( min-width: 48em ) {
+			div.navbar-header {
+				width:70%;
+			}
+		}
+
+		@media ( min-width: 64em ) {
+			div.navbar-header {
+				width:85%;
+			}
+		}
+
+      </style>
+  </head>
+  
+  <body>
+	<nav id="navbar" class="navbar navbar-inverse" role="navigation">
+  	  <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <img class="nav-logo-large hidden-xs" src="{!$Resource.BGLogo}" />
+          <img class="nav-logo-small visible-xs" src="{!$Resource.BGIcon}" />
+        </div>
+
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav navbar-right">
+            <li>
+              <a href="{!URLFOR($Page.BlogHome)}" class="menu-trigger">Home</a>
+            </li>
+          </ul>
+        </div><!-- /.navbar-collapse -->
+      </div><!-- /.container-fluid -->
+    </nav>
+
+  <div class="container-fluid">
+    <div class="row-fluid">
+    
+      <div class="col-xs-12 col-md-6">
+      
+        <div class="panel-group" id="accordion">
+          <div class="panel panel-info">
+      	    <div class="panel-heading">
+      	      <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+        	    <span class="glyphicon glyphicon-download-alt"></span>&nbsp;Get Bootstrap
+      	      </a>
+      	    </div>
+      	    <div id="collapseOne" class="panel-collapse collapse">
+    	      <div class="panel-body">One stop shop for bootstrap - download, customize, getting started and documentation.</div>
+    	      <div class="panel-footer"><span class="glyphicon glyphicon-link" ></span>&nbsp;<a href="http://getbootstrap.com" target="_blank">Goto site</a></div>
+    	    </div>
+    	  </div>
+        
+          <div class="panel panel-info">
+    	    <div class="panel-heading">
+      	      <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+    	        <span class="glyphicon glyphicon-globe" ></span>&nbsp;CSS Tricks
+      	      </a>
+      	    </div>
+      	    <div id="collapseTwo" class="panel-collapse collapse">
+    	      <div class="panel-body">CSS and related technologies - snippets, videos, tricks and tutorials from Chris Coyler.</div>
+    	      <div class="panel-footer"><span class="glyphicon glyphicon-link" ></span>&nbsp;<a href="http://css-tricks.com/" target="_blank">Click to view</a></div>
+    	    </div>
+    	  </div>
+
+          <div class="panel panel-info">
+    	    <div class="panel-heading">
+      	      <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
+    	        <span class="glyphicon glyphicon-book" ></span>&nbsp;Responsive Design With ...
+      	      </a>
+      	    </div>
+      	    <div id="collapseThree" class="panel-collapse collapse">
+    	      <div class="panel-body">HTML5 and CSS3 - a great overview with plenty of real world solutions.</div>
+    	      <div class="panel-footer"><span class="glyphicon glyphicon-link" ></span>&nbsp;<a href="http://www.packtpub.com/responsive-web-design-with-html-5-and-css3/book" target="_blank">More info</a></div>
+    	    </div>
+    	  </div>
+
+          <div class="panel panel-info">
+    	    <div class="panel-heading">
+      	      <a data-toggle="collapse" data-parent="#accordion" href="#collapseFour">
+    	        <span class="glyphicon glyphicon-globe" ></span>&nbsp;Bootstrap Grid
+      	      </a>
+      	    </div>
+      	    <div id="collapseFour" class="panel-collapse collapse">
+    	      <div class="panel-body">Article explaining how the Bootstrap 3 grid system works, with several examples.</div>
+    	      <div class="panel-footer"><span class="glyphicon glyphicon-link" ></span>&nbsp;<a href="http://scotch.io/bar-talk/understanding-the-bootstrap-3-grid-system" target="_blank">Click to view</a></div>
+    	    </div>
+    	  </div>
+    	</div>
+      </div>
+
+
+      <div class="col-xs-12 col-md-6">
+      
+        <div class="panel-group" id="accordionTwo">
+          <div class="panel panel-info">
+      	    <div class="panel-heading">
+      	      <a data-toggle="collapse" data-parent="#accordionTwo" href="#collapseFive">
+        	    <span class="glyphicon glyphicon-globe" ></span>&nbsp;Built with Bootstrap
+      	      </a>
+      	    </div>
+      	    <div id="collapseFive" class="panel-collapse collapse">
+    	      <div class="panel-body">A showcase of sites and applications built with the Bootstrap framework.</div>
+    	      <div class="panel-footer"><span class="glyphicon glyphicon-link" ></span>&nbsp;<a href="http://builtwithbootstrap.com/" target="_blank">Click to view</a></div>
+    	    </div>
+    	  </div>
+            	  
+        
+          <div class="panel panel-info">
+    	    <div class="panel-heading">
+      	      <a data-toggle="collapse" data-parent="#accordionTwo" href="#collapseSix">
+    	        <span class="glyphicon glyphicon-book" ></span>&nbsp;Responsive Web ...
+      	      </a>
+      	    </div>
+      	    <div id="collapseSix" class="panel-collapse collapse">
+    	      <div class="panel-body">Design by Example - covers multiple frameworks including Bootstrap.</div>
+    	      <div class="panel-footer"><span class="glyphicon glyphicon-link" ></span>&nbsp;<a href="http://www.packtpub.com/responsive-web-design-by-example/book" target="_blank">More info</a></div>
+    	    </div>
+    	  </div>
+
+          <div class="panel panel-info">
+    	    <div class="panel-heading">
+      	      <a data-toggle="collapse" data-parent="#accordionTwo" href="#collapseSeven">
+    	        <span class="glyphicon glyphicon-th" ></span>&nbsp;Visualforce in Salesforce1
+      	      </a>
+      	    </div>
+      	    <div id="collapseSeven" class="panel-collapse collapse">
+    	      <div class="panel-body">Slide deck from the Salesforce Developers webinar.</div>
+    	      <div class="panel-footer"><span class="glyphicon glyphicon-link" ></span>&nbsp;<a href="http://www.slideshare.net/developerforce/visualforce-in-salesforce1-optimizing-your-user-interface-for-mobile" target="_blank">Click to view</a></div>
+    	    </div>
+    	  </div>
+
+          <div class="panel panel-info">
+    	    <div class="panel-heading">
+      	      <a data-toggle="collapse" data-parent="#accordionTwo" href="#collapseEight">
+    	        <span class="glyphicon glyphicon-download-alt" ></span>&nbsp;Picturefill
+      	      </a>
+      	    </div>
+      	    <div id="collapseEight" class="panel-collapse collapse">
+    	      <div class="panel-body">Scott Jehl's Picturefill Javascript Library</div>
+    	      <div class="panel-footer"><span class="glyphicon glyphicon-link" ></span>&nbsp;<a href="http://bobbuzz.me.uk/RIcMD2" target="_blank">Goto site</a></div>
+    	    </div>
+    	  </div>
+
+    	  
+    	  
+    	  
+
+    	</div>
+      </div>
+    </div>
+
+  </div>
+    	  
+  </body>
+</apex:page>
