@@ -3,15 +3,15 @@ ResponsiveDesign
 
 This is the codebase behind my responsive design talk at the Salesforce1 World Tour in London.
 
-While all the components are here and you can drop them into your Saleforce org, its easier to use the Unmanaged Package, available at : https://login.salesforce.com/packaging/installPackage.apexp?p0=04ti0000000LHDk
+While all the components are here and you can drop them into your Saleforce org, its easier to use the Unmanaged Package, available at : 
+
+https://login.salesforce.com/packaging/installPackage.apexp?p0=04ti0000000LHDk
 
 There is a custom tab for blog posts, entitled 'Blog Posts' - add this to your application as appropriate.
 
-When creating a post:
+The summary field is not currently used.
 
-- the summary field is not currently used.
-
-- the Small/Medium/Large Image Id fields need the id of an attachment on the record (in a future version I'll handle this  through Visualforce).  To find out the attachment id, click the View link for the attachment and copy the id from the end of the URL.  In the following example:
+The the Small/Medium/Large Image Id fields need the id of an attachment on the record (in a future version I'll handle this through Visualforce).  To find out the attachment id, click the View link for the attachment and copy the id from the end of the URL.  In the following example:
 
 https://c.na6.content.force.com/servlet/servlet.FileDownload?file=00P8000000ORL9c
 
