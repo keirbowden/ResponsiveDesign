@@ -30,7 +30,7 @@ To make the blogs visible via a Force.com site, add the Blog permission set to t
 7. Add the 'Blog Site' permission set
 8. Save the changes
 
-You can then access the page via http://<base_site_url>/ApexHome
+You can then access the page via http://*base_site_url*/ApexHome - replace *base_site_url* with the site URL.
 
 Enjoy!
 
